@@ -6,19 +6,25 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Ali Can Yücel Angular Xox Game';
-  mark: string = "X";
-  message:string="Sıradaki: X";
+  mark: string = "";
+  message: string = "";
   games: string[] = ["", "", "", "", "", "", "", "", ""];
-  constructor(){
-    this
+  constructor() {
+    this.newGame();
   }
-  setMark(index:number) {
-  // fonksiyon içindeki parametreyi kullanmak için [parametre] bu şekilde
-    this.games[index]=this.mark;
-    if(this.mark=="X")
-    this.mark="O"
+  newGame() {
+    this.mark = "";
+    this.message = "";
+    this.games = ["", "", "", "", "", "", "", "", ""];
+
+  }
+  setMark(index: number) {
+    // fonksiyon içindeki parametreyi kullanmak için [parametre] bu şekilde
+    this.games[index] = this.mark;
+    if (this.mark == "X")
+      this.mark = "O"
     else
-    this.mark="X"
-    this.message=`Sıradaki:${this.mark}`
+      this.mark = "X"
+    this.message = `Sıradaki:${this.mark}`
   }
 }
