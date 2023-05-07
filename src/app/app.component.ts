@@ -30,6 +30,7 @@ export class AppComponent {
       { mark: "", winner: false },
       { mark: "", winner: false },];
     this.gameOver = false;
+    this.moves=[];
   }
   isGameOver() {
     if (this.games[0].mark != "" && this.games[0].mark == this.games[1].mark && this.games[1].mark == this.games[2].mark) {
