@@ -9,29 +9,80 @@ export class AppComponent {
   mark: string = "";
   moves: any = [];
   message: string = "";
-  games: string[] = ["", "", "", "", "", "", "", "", ""];
+  gameOver: boolean = false;
+  games: any[] = [
+  ];
   constructor() {
     this.newGame();
   }
   newGame() {
     this.mark = "X";
     this.message = "Sıradaki:X";
-    this.games = ["", "", "", "", "", "", "", "", ""];
+    this.games = [
+      { mark: "", winner: false },
+      { mark: "", winner: false },
+      { mark: "", winner: false },
+      { mark: "", winner: false },
+      { mark: "", winner: false },
+      { mark: "", winner: false },
+      { mark: "", winner: false },
+      { mark: "", winner: false },
+      { mark: "", winner: false },];
+    this.gameOver = false;
+  }
+  isGameOver() {
+    if (this.games[0].mark != "" && this.games[0].mark == this.games[1].mark && this.games[1].mark == this.games[2].mark) {
+      this.gameOver = true;
 
+    }
+    if (this.games[3].mark != "" && this.games[3].mark == this.games[4].mark && this.games[4].mark == this.games[5].mark) {
+      this.gameOver = true;
+
+    }
+    if (this.games[6].mark != "" && this.games[6].mark == this.games[7].mark && this.games[7].mark == this.games[8].mark) {
+      this.gameOver = true;
+
+    }
+    if (this.games[0].mark != "" && this.games[0].mark == this.games[3].mark && this.games[3].mark == this.games[6].mark) {
+      this.gameOver = true;
+
+    }
+    if (this.games[1].mark != "" && this.games[1].mark == this.games[4].mark && this.games[4].mark == this.games[7].mark) {
+      this.gameOver = true;
+
+    }
+    if (this.games[2].mark != "" && this.games[2].mark == this.games[5].mark && this.games[5].mark == this.games[8].mark) {
+      this.gameOver = true;
+
+    }
+    if (this.games[0].mark != "" && this.games[0].mark == this.games[4].mark && this.games[4].mark == this.games[8].mark) {
+      this.gameOver = true;
+
+    }
+    if (this.games[2].mark != "" && this.games[2].mark == this.games[4].mark && this.games[4].mark == this.games[6].mark) {
+      this.gameOver = true;
+
+    }
   }
   returnSelectMove(index: number) {
     this.games = this.moves[index];
   }
   setMark(index: number) {
     // fonksiyon içindeki parametreyi kullanmak için [parametre] bu şekilde
-    if (this.games[index] == "") {
-      this.games[index] = this.mark;
+    if (this.games[index].mark == "" && !this.gameOver) {
+      this.games[index].mark = this.mark;
       this.moves.push([...this.games]);
-      if (this.mark == "X")
-        this.mark = "O"
-      else
-        this.mark = "X"
-      this.message = `Sıradaki:${this.mark}`
+      this.isGameOver();
+      if (this.gameOver) {
+        this.message = "Oyun Bitti.Kazanan:" + this.mark
+      }
+      else {
+        if (this.mark == "X")
+          this.mark = "O"
+        else
+          this.mark = "X"
+        this.message = `Sıradaki:${this.mark}`
+      }
     }
   }
 }
