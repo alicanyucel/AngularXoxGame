@@ -7,4 +7,4 @@
   </div>
 </div>
 <hr>
-<button *ngFor="let m of moves let i=index" class="btn btn-primary mx-1 mt-1">{{i+1}}.hamle</button>
+<button *ngFor="let m of moves let i=index" (click)="returnSelectMove(i)" class="btn btn-primary mx-1 mt-1">{{i+1}}.hamle</button>
